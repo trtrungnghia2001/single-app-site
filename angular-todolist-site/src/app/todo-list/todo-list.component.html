@@ -1,0 +1,60 @@
+<div class="box">
+  <h1
+    style="
+      text-align: center;
+      text-transform: capitalize;
+      font-size: large;
+      font-weight: bold;
+    "
+  >
+    todo-list works!
+  </h1>
+  <!-- input -->
+  <div class="input-box">
+    <input type="text" [(ngModel)]="input_text" placeholder="New Todo" />
+    <button class="btn btn-primary" (click)="isEdit ? editTask() : addTask()">
+      {{isEdit?`Edit`:`Add new`}} task
+    </button>
+  </div>
+  <!-- filter -->
+  <div class="filter-group">
+    <button class="btn btn-primary" (click)="setFilter('all')">All</button>
+    <button class="btn btn-primary" (click)="setFilter('done')">Done</button>
+    <button class="btn btn-primary" (click)="setFilter('todo')">Todo</button>
+  </div>
+  <!-- tasks -->
+  <ul class="task-list">
+    <li *ngFor="let item of getFilterTasks()">
+      <span [ngClass]="{ compelete: item.compelete }">{{ item.task }}</span>
+      <div class="action">
+        <input
+          type="checkbox"
+          [checked]="item.compelete"
+          (click)="toggleCompelete(item._id)"
+          class="btn-checkbox"
+        />
+        <mat-icon
+          style="font-size: medium"
+          (click)="setEdit(item._id, item.task)"
+          class="btn-edit"
+          >edit</mat-icon
+        >
+        <mat-icon
+          style="font-size: medium"
+          (click)="removeTask(item._id)"
+          class="btn-delete"
+          >delete</mat-icon
+        >
+      </div>
+    </li>
+  </ul>
+  <!-- delete -->
+  <div class="footer-group">
+    <button class="btn btn-danger" (click)="deleteDoneTask()">
+      Delete done tasks
+    </button>
+    <button class="btn btn-danger" (click)="deleteAllTask()">
+      Delete all tasks
+    </button>
+  </div>
+</div>

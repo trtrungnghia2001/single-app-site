@@ -1,0 +1,90 @@
+:root {
+  --redColor: #db3345;
+  --blueColor: #16a3b7;
+  --yellowColor: #ffc013;
+}
+.btn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+.btn-primary {
+  background-color: #16a3b7;
+  color: white;
+}
+.btn-danger {
+  background-color: #db3345;
+  color: white;
+}
+
+.box {
+  max-width: 800px;
+  width: 100%;
+  margin: auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  .input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    input {
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: 1px solid #ccc;
+      outline: none;
+    }
+  }
+  .filter-group {
+    display: flex;
+    gap: 0.5rem;
+    button {
+      flex: 1;
+    }
+  }
+  ul.task-list {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    li {
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span.compelete {
+        text-decoration: line-through;
+        color: #db3345;
+      }
+      .action {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        .btn-checkbox {
+          border: 1px solid #16a3b7;
+        }
+        .btn-edit {
+          color: #ffc013;
+        }
+        .btn-delete {
+          color: #db3345;
+        }
+      }
+    }
+  }
+  .footer-group {
+    display: flex;
+    gap: 0.5rem;
+    button {
+      flex: 1;
+    }
+  }
+}
