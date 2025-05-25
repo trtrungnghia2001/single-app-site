@@ -5,9 +5,8 @@
 
 ## Demo
 
-[https://vite-react-ts-food-site-cuom.onrender.com/](https://vite-react-ts-food-site-cuom.onrender.com/)
+[https://vite-react-ts-food-site-itld.onrender.com/](https://vite-react-ts-food-site-itld.onrender.com/)
 
 ## Images
 
-![screencapture-vite-react-ts-food-site-cuom-onrender-2025-04-30-14_31_16](https://github.com/user-attachments/assets/2df7531f-6502-4a96-b564-befc38ed7811)
-
+![screencapture-vite-react-ts-food-site-itld-onrender-2025-05-25-15_51_16](https://github.com/user-attachments/assets/667683be-eed1-41dd-9233-0fc1e356b068)
