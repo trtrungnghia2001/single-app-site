@@ -6,7 +6,6 @@
 ## Demo
 
 [https://reactjs-league-of-legend-site.onrender.com/](https://reactjs-league-of-legend-site.onrender.com/)
-[https://reactjs-league-of-legend-site.onrender.com/](https://reactjs-league-of-legend-site.onrender.com/)
 
 ## Images
 
