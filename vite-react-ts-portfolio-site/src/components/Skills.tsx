@@ -1,9 +1,12 @@
 import Wrapper from "../layouts/Wrapper";
 import { skills } from "../constants";
 import { FaRegCheckCircle } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Skills = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
   return (
     <section className="section" id="skills">
       <Wrapper className="space-y-16">
@@ -15,8 +18,11 @@ const Skills = () => {
           {skills.map((item, idx) => (
             <li key={idx} className="max-w-xs w-full">
               <motion.div
+                ref={ref}
                 initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
+                animate={
+                  isInView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }
+                }
                 transition={{ duration: 1, delay: idx }}
                 className="shadow rounded-xl p-8 border"
               >

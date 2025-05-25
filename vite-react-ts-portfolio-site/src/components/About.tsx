@@ -1,9 +1,12 @@
 import { PiReadCvLogoFill } from "react-icons/pi";
 import Wrapper from "../layouts/Wrapper";
 import { about, avatar_url } from "../constants";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const About = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
   return (
     <section className="section" id="about">
       <Wrapper className="space-y-16">
@@ -13,14 +16,22 @@ const About = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-10 justify-center items-center">
           <motion.div
+            ref={ref}
             initial={{
               x: -100,
               opacity: 0,
             }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
+            animate={
+              isInView
+                ? {
+                    x: 0,
+                    opacity: 1,
+                  }
+                : {
+                    x: -100,
+                    opacity: 0,
+                  }
+            }
             transition={{
               duration: 1,
             }}
@@ -36,14 +47,22 @@ const About = () => {
             </div>
           </motion.div>
           <motion.div
+            ref={ref}
             initial={{
               y: 100,
               opacity: 0,
             }}
-            animate={{
-              y: 0,
-              opacity: 1,
-            }}
+            animate={
+              isInView
+                ? {
+                    y: 0,
+                    opacity: 1,
+                  }
+                : {
+                    y: 100,
+                    opacity: 0,
+                  }
+            }
             transition={{
               duration: 1,
             }}

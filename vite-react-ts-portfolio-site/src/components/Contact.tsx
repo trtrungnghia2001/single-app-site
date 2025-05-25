@@ -1,7 +1,7 @@
 import { contact } from "@/constants";
 import Wrapper from "../layouts/Wrapper";
 import { FiArrowRight } from "react-icons/fi";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 //
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "./ui/textarea";
+import { useRef } from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -52,6 +53,9 @@ const Contact = () => {
     // ✅ This will be type-safe and validated.
     console.log(values);
   }
+
+  const ref = useRef(null);
+  const isInView = useInView(ref);
   return (
     <section className="section" id="contact">
       <Wrapper className="space-y-16">
@@ -63,8 +67,9 @@ const Contact = () => {
         <div className="flex flex-col md:flex-row items-start justify-center gap-10">
           {/* left */}
           <motion.div
+            ref={ref}
             initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
             transition={{ duration: 1 }}
             className="md:max-w-xs w-full"
           >
@@ -73,8 +78,11 @@ const Contact = () => {
               {contact.map((item, idx) => (
                 <li key={idx}>
                   <motion.div
+                    ref={ref}
                     initial={{ y: 100, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
+                    animate={
+                      isInView ? { y: 0, opacity: 1 } : { y: 100, opacity: 0 }
+                    }
                     transition={{ duration: 1, delay: idx + 1 }}
                     className="p-5 rounded-xl border shadow flex flex-col items-center gap-1"
                   >
@@ -92,8 +100,9 @@ const Contact = () => {
           </motion.div>
           {/* right */}
           <motion.div
+            ref={ref}
             initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
+            animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
             transition={{ duration: 1 }}
             className="md:max-w-xl w-full"
           >

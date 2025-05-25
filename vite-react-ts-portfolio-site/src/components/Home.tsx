@@ -4,16 +4,20 @@ import { IoMdArrowRoundDown } from "react-icons/io";
 import { SlMouse } from "react-icons/sl";
 import { avatar_url, social_links } from "../constants";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const Home = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
   return (
     <section className="section flex items-center justify-center" id="home">
       <Wrapper className="flex flex-col-reverse md:flex-row gap-10 justify-between">
         {/* left */}
         <motion.div
+          ref={ref}
           initial={{ x: -100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
           transition={{ duration: 1 }}
           className="flex-1 flex items-center gap-10 md:max-w-xl"
         >
@@ -54,8 +58,9 @@ const Home = () => {
         </motion.div>
         {/* right */}
         <motion.div
+          ref={ref}
           initial={{ x: 100, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
+          animate={isInView ? { x: 0, opacity: 1 } : { x: 100, opacity: 0 }}
           transition={{ duration: 1 }}
           className="flex items-center gap-10"
         >
