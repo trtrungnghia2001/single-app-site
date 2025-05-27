@@ -1,0 +1,64 @@
+@import "tailwindcss";
+:root {
+  --bgColor: #f5f5fa;
+  --textColor: #2c333a;
+  --textSecondaryColor: #596773;
+
+  /* size */
+  --textSize: 0.875rem;
+}
+[data-theme] {
+  --bgColor: rgb(20, 20, 20);
+  --textColor: rgba(255, 255, 255, 0.85);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-size: var(--textSize);
+  background-color: var(--bgColor);
+  color: var(--textColor);
+  font-family: 'Nunito Sans', sans-serif;
+}
+img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: cover;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+h4 {
+  font-size: 1.25rem;
+}
+h5 {
+  font-size: 1rem;
+}
+h6 {
+  font-size: 0.875rem;
+}
+
+@theme {
+  --color-textSecondaryColor:var(--textSecondaryColor)
+}
