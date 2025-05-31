@@ -1,0 +1,18 @@
+<div class="search-container min-h-[75vh] flex items-center justify-center">
+  <div class="text-center max-w-2xl w-full mx-auto space-y-6 p-3">
+    <h1 class="text-white">Find Your Book Of Choice</h1>
+    <p class="text-white">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero eos
+      repellendus perspiciatis ipsa quasi, dignissimos officiis voluptatum
+      doloremque laudantium neque sapiente. Aliquam alias in, reiciendis soluta
+      suscipit magnam molestiae repellat.
+    </p>
+    <input
+      type="text"
+      placeholder="Search..."
+      class="outline-none border-none w-full rounded-full bg-white p-3 px-5"
+      [(ngModel)]="searchTerm"
+      (input)="onSearchTermChange()"
+    />
+  </div>
+</div>

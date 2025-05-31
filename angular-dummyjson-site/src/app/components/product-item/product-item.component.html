@@ -1,0 +1,28 @@
+<a class="rounded-lg border-gray-300 border block overflow-hidden">
+  <div class="aspect-square">
+    <img [src]="data.thumbnail" alt="thumbnail" loading="lazy" />
+  </div>
+  <div class="p-2 space-y-2 text-center">
+    <h4 class="line-clamp-2 font-medium text-base h-12">
+      {{ data.title }}
+    </h4>
+    <p class="capitalize flex items-center justify-center gap-1">
+      {{ data.rating }}
+      <i class="material-icons text-yellow-500" style="font-size: 18px">star</i>
+    </p>
+
+    <p class="flex items-center justify-center gap-2">
+      <span class="inline-block font-bold text-base text-red-500">
+        {{ data.price }}$
+      </span>
+      <span
+        class="inline-block font-medium px-1.5 py-1 leading-none bg-gray-200 rounded text-xs"
+        >-{{ data.discountPercentage.toFixed(0) }}%</span
+      >
+    </p>
+    <p class="capitalize">{{ data.category }}</p>
+    <p class="text-gray-500 text-[11px] mt-2 pt-2 border-t border-gray-300">
+      {{ data.warrantyInformation }}
+    </p>
+  </div>
+</a>

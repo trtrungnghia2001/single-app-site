@@ -1,0 +1,36 @@
+<app-loading [isLoading]="query.isLoading()"></app-loading>
+
+<div
+  *ngIf="!query.isLoading() && query.isSuccess() && book"
+  class="py-6 px-3 max-w-7xl w-full mx-auto"
+>
+  <div class="flex flex-col md:flex-row md:items-start gap-12">
+    <div class="md:max-w-xs w-full">
+      <div class="w-full aspect-[9/14]">
+        <img [src]="getCover()" alt="" loading="lazy" class="image" />
+      </div>
+    </div>
+    <div class="flex-1 space-y-3">
+      <h2 class="mb-6">{{ book.title }}</h2>
+      <div class="text-secondary">
+        {{ book.description?.value || book.description }}
+      </div>
+      <p>
+        <span class="capitalize font-medium">subject places: </span>
+        {{ book.subject_places }}
+      </p>
+      <p>
+        <span class="capitalize font-medium">subject times: </span>
+        {{ book.subject_times }}
+      </p>
+      <p>
+        <span class="capitalize font-medium">subject people: </span>
+        {{ book.subject_people }}
+      </p>
+      <p>
+        <span class="capitalize font-medium">subjects: </span>
+        {{ book.subjects }}
+      </p>
+    </div>
+  </div>
+</div>

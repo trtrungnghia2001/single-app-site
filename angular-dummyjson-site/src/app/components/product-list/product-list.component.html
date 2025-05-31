@@ -1,0 +1,15 @@
+<div>
+  <ul
+    class="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+  >
+    <li *ngFor="let item of products">
+      <app-product-item [data]="item"></app-product-item>
+    </li>
+  </ul>
+  <div *ngIf="showBtn" class="text-center mt-10">
+    <div *ngIf="isLoading; else btnView">Loading...</div>
+    <ng-template #btnView>
+      <button (click)="viewMore()">View more</button>
+    </ng-template>
+  </div>
+</div>

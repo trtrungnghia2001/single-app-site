@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+img{
+    @apply object-center object-cover w-full h-full block
+}
+
+body{
+    font-size: 14px;
+    line-height: 1.25;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
