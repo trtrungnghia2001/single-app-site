@@ -1,6 +1,7 @@
 ## Technologies Used
 
 * Frontend: Angular, Tailwind CSS
+* Api: [https://openlibrary.org/](https://openlibrary.org/)
 
 ## Demo
 
