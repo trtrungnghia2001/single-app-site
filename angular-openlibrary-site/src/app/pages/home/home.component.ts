@@ -1,42 +1,33 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { OpenlibraryService } from '../../services/openlibrary.service';
-import { BookItemComponent } from '../../components/book-item/book-item.component';
-import { CommonModule } from '@angular/common';
-import { LoadingComponent } from '../../components/loading/loading.component';
 import { injectQuery } from '@tanstack/angular-query-experimental';
 import { lastValueFrom } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { ISearchResult } from '../../types';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { NgxPaginationModule } from 'ngx-pagination';
+import { IBook } from '../../models';
+import { CommonModule } from '@angular/common';
+import { BookItemComponent } from '../../components/book-item/book-item.component';
+import { LoadingComponent } from '../../components/loading/loading.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [
-    CommonModule,
-    BookItemComponent,
-    LoadingComponent,
-    NgxPaginationModule,
-  ],
+  imports: [CommonModule, BookItemComponent, LoadingComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
-export class HomeComponent implements OnInit {
-  readonly service = inject(OpenlibraryService);
-  readonly searchTerm = toSignal(this.service.searchTerm$);
+export class HomeComponent {
+  service = inject(OpenlibraryService);
+  books!: IBook[];
+  isLoading: boolean = false;
 
-  constructor(private http: HttpClient) {}
-
-  query = injectQuery(() => ({
-    queryKey: ['books', this.searchTerm()],
-    queryFn: () =>
-      lastValueFrom(
-        this.http.get<ISearchResult>(
-          `https://openlibrary.org/search.json?q=` + this.searchTerm()
-        )
-      ),
-    enabled: !!this.searchTerm(),
-  }));
+  constructor(private router: ActivatedRoute) {
+    effect(() => {
+      this.isLoading = true;
+      this.service.getBooks(this.service.searchTerm()).subscribe((value) => {
+        this.books = value.docs;
+        this.isLoading = false;
+      });
+    });
+  }
 
   ngOnInit(): void {}
 }

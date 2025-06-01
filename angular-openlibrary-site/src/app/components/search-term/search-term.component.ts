@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { OpenlibraryService } from '../../services/openlibrary.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-term',
@@ -9,12 +10,16 @@ import { OpenlibraryService } from '../../services/openlibrary.service';
   styleUrl: './search-term.component.css',
 })
 export class SearchTermComponent {
-  searchTerm: string = '';
-  constructor(private service: OpenlibraryService) {
-    this.searchTerm = this.service.getSearchTerm();
+  service = inject(OpenlibraryService);
+  router = inject(Router);
+  searchValue: string = 'dracula';
+  constructor() {}
+  ngOnInit(): void {
+    this.service.searchTerm.set(this.searchValue);
   }
 
-  onSearchTermChange(): void {
-    this.service.setSearchTerm(this.searchTerm);
+  onSetSearchValue() {
+    this.service.searchTerm.set(this.searchValue);
+    this.router.navigate(['/home']);
   }
 }

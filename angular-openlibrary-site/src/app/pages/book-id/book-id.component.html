@@ -1,14 +1,25 @@
-<app-loading [isLoading]="query.isLoading()"></app-loading>
+<app-loading *ngIf="isLoading; else result"></app-loading>
 
-<div
-  *ngIf="!query.isLoading() && query.isSuccess() && book"
-  class="py-6 px-3 max-w-7xl w-full mx-auto"
->
+<ng-template #result class="py-6 px-3 max-w-7xl w-full mx-auto">
   <div class="flex flex-col md:flex-row md:items-start gap-12">
-    <div class="md:max-w-xs w-full">
+    <div class="md:max-w-xs w-full space-y-3">
       <div class="w-full aspect-[9/14]">
         <img [src]="getCover()" alt="" loading="lazy" class="image" />
       </div>
+      <button
+        *ngIf="!isBookmark"
+        (click)="toggleBookmark()"
+        class="block w-full p-2 transition-all hover:bg-blue-600 bg-blue-500 text-white cursor-pointer rounded"
+      >
+        Save to Bookmark
+      </button>
+      <button
+        *ngIf="isBookmark"
+        (click)="toggleBookmark()"
+        class="block w-full p-2 transition-all hover:bg-red-600 bg-red-500 text-white cursor-pointer rounded"
+      >
+        Remove to Bookmark
+      </button>
     </div>
     <div class="flex-1 space-y-3">
       <h2 class="mb-6">{{ book.title }}</h2>
@@ -33,4 +44,4 @@
       </p>
     </div>
   </div>
-</div>
+</ng-template>

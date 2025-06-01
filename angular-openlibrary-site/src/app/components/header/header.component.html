@@ -1,0 +1,12 @@
+<header>
+  <div class="max-w-7xl w-full mx-auto p-3 flex items-center justify-between">
+    <a [routerLink]="['/home']" class="inline-block w-14">
+      <img src="../../../assets/logo.png" alt="logo" loading="lazy" />
+    </a>
+    <ul class="flex items-center gap-5 font-medium text-base">
+      <li *ngFor="let item of links">
+        <a [routerLink]="[item.path]">{{ item.title }}</a>
+      </li>
+    </ul>
+  </div>
+</header>

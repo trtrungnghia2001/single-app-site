@@ -1,10 +1,3 @@
-export interface IApiResult<T> {
-  isLoading: boolean;
-  result: T;
-  searchTerm: string;
-  error: string | null;
-}
-//
 export interface IBook {
   author_key: string[];
   author_name: string[];
@@ -23,13 +16,12 @@ export interface IBook {
   public_scan_b: boolean;
   title: string;
 }
-export interface ISearchResult {
+export interface ISearchBook {
   docs: IBook[];
   numFound: number;
 }
-//
 export interface IBookDetail {
-  description: {
+  description?: {
     type: string;
     value: string;
   };
@@ -81,3 +73,4 @@ export interface IBookDetail {
     value: string;
   };
 }
+export type CoverSize = 'S' | 'M' | 'L';

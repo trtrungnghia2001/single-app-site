@@ -1,56 +1,49 @@
-import { Component, effect, SimpleChanges } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
+import { IBookDetail } from '../../models';
+import { CommonModule } from '@angular/common';
+import { LoadingComponent } from '../../components/loading/loading.component';
 import { ActivatedRoute } from '@angular/router';
 import { OpenlibraryService } from '../../services/openlibrary.service';
-import { IBookDetail } from '../../types';
-import { injectQuery } from '@tanstack/angular-query-experimental';
-import { HttpClient } from '@angular/common/http';
-import { lastValueFrom } from 'rxjs';
-import { LoadingComponent } from '../../components/loading/loading.component';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-book-id',
-  imports: [LoadingComponent, CommonModule],
+  imports: [CommonModule, LoadingComponent],
   templateUrl: './book-id.component.html',
   styleUrl: './book-id.component.css',
 })
 export class BookIdComponent {
-  idParam!: string;
-  book!: Partial<IBookDetail>;
-  constructor(
-    private http: HttpClient,
-    private router: ActivatedRoute,
-    private services: OpenlibraryService
-  ) {
-    effect(() => {
-      if (this.query.isSuccess() && this.query.data()) {
-        this.book = this.query.data();
-      }
-    });
-  }
+  book!: IBookDetail;
+  isLoading: boolean = false;
+  isBookmark: boolean = false;
+
+  router = inject(ActivatedRoute);
+  service = inject(OpenlibraryService);
 
   ngOnInit(): void {
-    this.router.paramMap.subscribe((parmas) => {
-      const getId = parmas.get('id');
-      if (getId) {
-        this.idParam = getId;
+    this.isLoading = true;
+    this.router.paramMap.subscribe((param) => {
+      const id = param.get('id');
+      if (id) {
+        this.isBookmark = this.service.checkBookmark(id);
+        this.service.getBookId(id).subscribe((value) => {
+          this.book = value;
+          this.isLoading = false;
+        });
       }
     });
   }
 
-  getCover(): string {
-    return this.services.getCover(this.book?.covers?.[0] as number);
+  getCover() {
+    return this.service.getCover(this.book.covers?.[0], 'L');
   }
 
-  query = injectQuery(() => ({
-    queryKey: ['books', this.idParam],
-    queryFn: () =>
-      lastValueFrom(
-        this.http.get<IBookDetail>(
-          `https://openlibrary.org` + this.idParam + `.json`
-        )
-      ),
-
-    enabled: !!this.idParam,
-  }));
+  toggleBookmark() {
+    if (this.isBookmark) {
+      this.isBookmark = false;
+      this.service.removeBookmark(this.book.key);
+    } else {
+      this.isBookmark = true;
+      this.service.addBookmark(this.book);
+    }
+  }
 }

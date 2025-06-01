@@ -1,12 +1,11 @@
-import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './loading.component.html',
-  styleUrl: './loading.component.css',
+  styleUrl: './loading.component.css'
 })
 export class LoadingComponent {
-  @Input() isLoading!: boolean;
+
 }

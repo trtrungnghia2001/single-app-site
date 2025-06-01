@@ -11,8 +11,8 @@
       type="text"
       placeholder="Search..."
       class="outline-none border-none w-full rounded-full bg-white p-3 px-5"
-      [(ngModel)]="searchTerm"
-      (input)="onSearchTermChange()"
+      [(ngModel)]="searchValue"
+      (keyup.enter)="onSetSearchValue()"
     />
   </div>
 </div>
