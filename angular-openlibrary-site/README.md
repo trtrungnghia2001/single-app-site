@@ -1,6 +1,6 @@
 ## Technologies Used
 
-* Frontend: Angular
+* Frontend: Angular, Tailwind CSS
 
 ## Demo
 
