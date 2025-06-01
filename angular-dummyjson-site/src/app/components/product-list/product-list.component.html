@@ -1,15 +1,25 @@
-<div>
+<div class="space-y-10">
+  <div class="flex items-stretch gap-3">
+    <input
+      type="text"
+      placeholder="Search..."
+      class="input"
+      [(ngModel)]="searchTerm"
+      (keyup.enter)="setSearchTerm()"
+    />
+    <button (click)="setSearchTerm()" class="btn">Tim kiem</button>
+  </div>
   <ul
     class="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
   >
-    <li *ngFor="let item of products">
+    <li *ngFor="let item of products; trackBy: trackByProductId">
       <app-product-item [data]="item"></app-product-item>
     </li>
   </ul>
-  <div *ngIf="showBtn" class="text-center mt-10">
+  <div *ngIf="showBtn" class="text-center">
     <div *ngIf="isLoading; else btnView">Loading...</div>
     <ng-template #btnView>
-      <button (click)="viewMore()">View more</button>
+      <button (click)="viewMore()" class="cursor-pointer">View more</button>
     </ng-template>
   </div>
 </div>

@@ -1,12 +1,24 @@
 @import "tailwindcss";
 
-img{
-    @apply object-center object-cover w-full h-full block
-}
-
-body{
+base {
+  * {
+    @apply border-gray-300;
+  }
+  body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 14px;
     line-height: 1.25;
+  }
+  img {
+    @apply object-center object-cover w-full h-full block;
+  }
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@layer utilities {
+  .input {
+    @apply border border-gray-300 outline-blue-500 transition-all px-4 py-1 rounded-lg;
+  }
+  .btn {
+    @apply bg-gray-100 hover:bg-gray-200 transition-all px-4 py-1 rounded-lg cursor-pointer font-medium;
+  }
+}

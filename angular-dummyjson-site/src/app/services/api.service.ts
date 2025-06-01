@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
 import { IProductList, IQuery } from '../modules';
 import { Observable } from 'rxjs';
@@ -8,17 +8,26 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
   baseUrl = `https://dummyjson.com/`;
-  query = signal<IQuery>({
-    limit: 100,
-    skip: 0,
-    total: 0,
-  });
+
   constructor(private http: HttpClient) {}
 
-  getProducts(): Observable<IProductList> {
-    return this.http.get<IProductList>(
-      this.baseUrl +
-        `products?limit=${this.query().limit}&skip=${this.query().skip}`
-    );
+  query = signal<IQuery>({
+    limit: 30,
+    skip: 0,
+    total: 0,
+    q: '',
+  });
+  setQuery(value: Partial<IQuery>) {
+    this.query.set({
+      ...this.query(),
+      ...value,
+    });
+  }
+  getProductsSearch(): Observable<IProductList> {
+    const params = this.query() as unknown as HttpParams;
+
+    return this.http.get<IProductList>(this.baseUrl + `products/search`, {
+      params: params,
+    });
   }
 }

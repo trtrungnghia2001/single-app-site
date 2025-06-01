@@ -47,4 +47,5 @@ export interface IQuery {
   total: number;
   skip: number;
   limit: number;
+  q: string;
 }
