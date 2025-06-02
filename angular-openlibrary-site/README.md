@@ -2,6 +2,7 @@
 
 * Frontend: Angular, Tailwind CSS
 * Api: [https://openlibrary.org/](https://openlibrary.org/)
+* Store: localStorage
 
 ## Demo
 
