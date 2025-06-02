@@ -1,6 +1,7 @@
 ## Technologies Used
 
 * Frontend: React, Tailwind CSS, Dnd Kit
+* Store: localStorage
 
 ## Demo
 
