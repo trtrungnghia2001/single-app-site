@@ -1,6 +1,7 @@
 ## Technologies Used
 
-* Frontend: Angular
+* Frontend: Angular, Css
+* Store: localStorage
 
 ## Demo
 
