@@ -1,3 +1,10 @@
+export interface IQuery {
+  total: number;
+  skip: number;
+  limit: number;
+  q: string;
+}
+// product
 export interface IProduct {
   id: number;
   title: string;
@@ -43,9 +50,45 @@ export interface IProductList {
   skip: number;
   limit: number;
 }
-export interface IQuery {
+// cart
+export interface IProductCart {
+  id: 117;
+  title: string;
+  price: number;
+  quantity: number;
+  total: number;
+  discountPercentage: number;
+  discountedTotal: number;
+  thumbnail: string;
+}
+export interface ICart {
+  id: number;
+  products: IProductCart[];
+  total: number;
+  discountedTotal: number;
+  userId: number;
+  totalProducts: number;
+  totalQuantity: number;
+}
+export interface ICartList {
+  carts: ICart[];
   total: number;
   skip: number;
   limit: number;
-  q: string;
+}
+// auth
+export interface IAuth {
+  id: number;
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  gender: string;
+  image: string;
+  accessToken: string;
+  refreshToken: string;
+}
+export interface ILogin {
+  username: string;
+  password: string;
 }

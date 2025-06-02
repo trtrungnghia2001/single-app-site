@@ -1,0 +1,23 @@
+<header class="p-3 flex items-center justify-between">
+  <a [routerLink]="['/']" class="capitalize font-bold text-xl">dummyjson</a>
+  <ul class="flex items-center gap-6">
+    <li *ngFor="let item of links">
+      <a
+        routerLink="/{{ item }}"
+        routerLinkActive="text-blue-500"
+        class="capitalize font-medium"
+        >{{ item }}</a
+      >
+    </li>
+  </ul>
+  <a routerLink="login" *ngIf="!authService.auth; else info">Login</a>
+  <ng-template #info>
+    <div class="flex items-center gap-3">
+      <span>{{ authService.auth?.username }}</span>
+      <div class="aspect-square overflow-hidden w-10 rounded-full">
+        <img [src]="authService.auth?.image" alt="avatar" loading="lazy" />
+      </div>
+      <button (click)="authService.logout()">Logout</button>
+    </div>
+  </ng-template>
+</header>

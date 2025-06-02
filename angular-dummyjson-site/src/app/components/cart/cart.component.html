@@ -1,0 +1,48 @@
+<p *ngIf="isLoading; else result">Loading...</p>
+
+<ng-template #result>
+  <p *ngIf="errMessage">{{ errMessage }}</p>
+
+  <ul *ngIf="!errMessage && carts" class="space-y-10">
+    <li *ngFor="let cart of carts.carts" class="space-y-3">
+      <table class="border-collapse w-full">
+        <caption class="caption-top mb-4">
+          Cart:
+          {{
+            cart.id
+          }}
+        </caption>
+        <thead>
+          <tr>
+            <th class="px-3 py-1">Title</th>
+            <th class="px-3 py-1">Quantity</th>
+            <th class="px-3 py-1">Price</th>
+            <th class="px-3 py-1">Discount</th>
+            <th class="px-3 py-1">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of cart.products" class="">
+            <td class="flex items-center gap-3 py-2">
+              <div class="w-10 aspect-square overflow-hidden">
+                <img [src]="item.thumbnail" alt="thumbnail" loading="lazy" />
+              </div>
+              <p class="flex-1">{{ item.title }}</p>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.price | currency : "USD" }}</td>
+            <td>{{ item.discountedTotal | currency : "USD" }}</td>
+            <td>{{ item.total | currency : "USD" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <ul>
+        <li><span>Total products:</span> {{ cart.totalProducts }}</li>
+        <li><span>Total quantity:</span> {{ cart.totalQuantity }}</li>
+        <li><span>Total discount:</span> {{ cart.discountedTotal }}</li>
+        <li><span>Total total:</span> {{ cart.total }}</li>
+      </ul>
+    </li>
+  </ul>
+</ng-template>
