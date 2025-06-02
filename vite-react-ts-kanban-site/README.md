@@ -1,6 +1,6 @@
 ## Technologies Used
 
-* Frontend: React, Tailwind CSS
+* Frontend: React, Tailwind CSS, Dnd Kit
 
 ## Demo
 
