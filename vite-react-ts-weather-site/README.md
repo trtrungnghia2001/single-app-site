@@ -2,6 +2,7 @@
 
 * Frontend: React, Tailwind CSS
 * API: [https://openweathermap.org](https://openweathermap.org)
+* Store: localStorage
 
 ## Demo
 
