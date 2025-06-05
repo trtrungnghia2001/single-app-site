@@ -1,0 +1,21 @@
+<div class="space-y-6 mb-10">
+  <h3 class="uppercase text-center">dattebayo</h3>
+
+  <ul class="flex items-center justify-center gap-3 flex-wrap">
+    <li *ngFor="let item of links">
+      <a
+        [routerLink]="[item]"
+        routerLinkActive
+        #rla="routerLinkActive"
+        [ngClass]="{
+          'bg-blue-500': rla.isActive,
+          'bg-gray-900': !rla.isActive,
+          'capitalize px-4 py-2 rounded-lg text-white': true
+        }"
+        >{{ item }}</a
+      >
+    </li>
+  </ul>
+</div>
+
+<router-outlet></router-outlet>
