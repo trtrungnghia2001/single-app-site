@@ -1,0 +1,22 @@
+<a
+  [routerLink]="[`/dragonball/characters`,data.id]"
+  class="inline-block bg-gray-200 group"
+>
+  <div class="aspect-[3/5] w-[60%] mx-auto p-2">
+    <img
+      [src]="data.image"
+      alt="img"
+      class="!object-contain group-hover:scale-120 transition-all"
+    />
+  </div>
+  <div class="p-3 bg-gray-500 text-white">
+    <h5 class="mb-3">{{ data.name }}</h5>
+    <p class="text-yellow-500">{{ data.race }} - {{ data.gender }}</p>
+    <p>Base Ki:</p>
+    <p class="text-yellow-500">{{ data.ki }}</p>
+    <p>Affiliation:</p>
+    <p class="text-yellow-500">
+      {{ data.affiliation }}
+    </p>
+  </div>
+</a>

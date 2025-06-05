@@ -1,0 +1,39 @@
+<app-loading *ngIf="isLoading; else result"></app-loading>
+
+<ng-template #result>
+  <ul
+    class="mb-10 grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+  >
+    <li
+      *ngFor="
+        let item of data
+          | paginate
+            : {
+                itemsPerPage: query.limit,
+                currentPage: query.page,
+                totalItems: totalItems
+              }
+      "
+    >
+      <a [routerLink]="[item.id]" class="inline-block bg-gray-200 group">
+        <div class="aspect-square overflow-hidden">
+          <img
+            [src]="item.image"
+            alt="img"
+            class="group-hover:scale-120 transition-all"
+          />
+        </div>
+        <div class="p-3 bg-gray-500 text-white">
+          <h5 class="mb-3 line-clamp-1">{{ item.name }}</h5>
+          <p class="text-yellow-500 line-clamp-2">{{ item.description }}</p>
+        </div>
+      </a>
+    </li>
+  </ul>
+  <!-- Đây chỉ dùng để hiển thị điều hướng -->
+  <pagination-controls
+    class="mx-auto max-w-max"
+    (pageChange)="onPageChange($event)"
+  >
+  </pagination-controls>
+</ng-template>

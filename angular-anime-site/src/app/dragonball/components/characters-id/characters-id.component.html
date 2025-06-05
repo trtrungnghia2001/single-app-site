@@ -1,0 +1,38 @@
+<app-loading *ngIf="isLoading; else result"></app-loading>
+
+<ng-template #result>
+  <div class="space-y-6">
+    <div class="flex flex-col md:flex-row items-center gap-6">
+      <div class="rounded-lg overflow-hidden max-w-24">
+        <img [src]="data.image" alt="img" loading="lazy" />
+      </div>
+      <div
+        class="flex-1 w-full bg-gray-200 p-3 px-6 rounded-lg font-medium space-y-1"
+      >
+        <h5 class="mb-3">{{ data.name }}</h5>
+        <p><span class="text-yellow-500">Max Ki: </span>{{ data.maxKi }}</p>
+        <p><span class="text-yellow-500">Gender: </span>{{ data.gender }}</p>
+        <p><span class="text-yellow-500">Race: </span>{{ data.race }}</p>
+        <p>
+          <span class="text-yellow-500">Affiliation: </span
+          >{{ data.affiliation }}
+        </p>
+        <p>
+          <span class="text-yellow-500">Planet: </span>
+          <a [routerLink]="['/dragonball/planets', data.originPlanet.id]">{{
+            data.originPlanet.name
+          }}</a>
+        </p>
+      </div>
+    </div>
+    <p>{{ data.description }}</p>
+    <!-- characters -->
+    <ul
+      class="grid gap-3 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6"
+    >
+      <li *ngFor="let item of data.transformations">
+        <app-characters-card [data]="item"></app-characters-card>
+      </li>
+    </ul>
+  </div>
+</ng-template>
