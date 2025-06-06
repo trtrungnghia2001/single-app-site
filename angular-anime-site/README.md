@@ -1,7 +1,7 @@
 ## Technologies Used
 
 * Frontend: Angular, Tailwind CSS
-* Api: 
+* Api:
 1. [https://web.dragonball-api.com/](https://web.dragonball-api.com/)
 2. [https://api-dattebayo.vercel.app/](https://api-dattebayo.vercel.app/)
 
