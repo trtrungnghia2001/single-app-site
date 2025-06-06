@@ -2,8 +2,8 @@
 
 * Frontend: Angular, Tailwind CSS
 * Api: 
-- [https://web.dragonball-api.com/](https://web.dragonball-api.com/)
-- [https://api-dattebayo.vercel.app/](https://api-dattebayo.vercel.app/)
+1. [https://web.dragonball-api.com/](https://web.dragonball-api.com/)
+2. [https://api-dattebayo.vercel.app/](https://api-dattebayo.vercel.app/)
 
 ## Demo
 
