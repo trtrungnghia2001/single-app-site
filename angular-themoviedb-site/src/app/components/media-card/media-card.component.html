@@ -1,0 +1,23 @@
+<a
+  [routerLink]="['/media', data.id]"
+  [queryParams]="{ media_type: data.media_type || media_type }"
+  class="w-full inline-block"
+>
+  <div class="relative">
+    <div class="rounded-lg overflow-hidden aspect-thumbnail">
+      <img [src]="data.poster_path" alt="thumbanil" />
+    </div>
+    <div
+      class="absolute -translate-y-[50%] translate-x-3 text-xs font-medium outline- outline-[3px] outline-green-500 bg-[#081C22] text-white rounded-full overflow-hidden w-8 aspect-square flex items-center justify-center"
+    >
+      {{ data.vote_average }}
+      <sup class="text-[7px]">%</sup>
+    </div>
+  </div>
+  <div class="mt-4 p-2">
+    <h6>{{ data.title || data.name }}</h6>
+    <p class="text-text-secondaryColor text-size-xxs">
+      {{ data.release_date || data.first_air_date }}
+    </p>
+  </div>
+</a>

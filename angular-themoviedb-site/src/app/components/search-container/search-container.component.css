@@ -1,0 +1,8 @@
+.search-container {
+  background-image: url("https://image.tmdb.org/t/p/original/mKp4euM5Cv3m2U1Vmby3OGwcD5y.jpg"); /* Relative path from this CSS file to assets */
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  margin: 0;
+}

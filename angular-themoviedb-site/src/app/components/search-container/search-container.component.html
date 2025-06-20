@@ -1,0 +1,24 @@
+<section class="search-container">
+  <div class="max-w-7xl w-full mx-auto p-4 py-16">
+    <div class="text-white">
+      <h2>Welcome.</h2>
+      <h3>Millions of movies, TV shows and people to discover. Explore now.</h3>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="relative mt-10">
+      <input
+        id="search"
+        formControlName="search"
+        type="text"
+        class="border-none outline-none w-full py-2.5 px-4 pr-28 rounded-full overflow-hidden bg-white"
+        placeholder="Search for a movie, tv show, person..."
+      />
+      <button
+        type="submit"
+        [disabled]="!form.valid"
+        class="w-24 absolute top-0 right-0 bg-gradient-to-r from-emerald-500 to-sky-500 text-white rounded-full px-6 py-2 text-sm leading-none h-full cursor-pointer font-medium"
+      >
+        Search
+      </button>
+    </form>
+  </div>
+</section>

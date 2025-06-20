@@ -1,0 +1,10 @@
+<ng-container *ngIf="isLoading; else elseTemplate"> Loading... </ng-container>
+<ng-template #elseTemplate>
+  <app-search-container />
+  <app-media-list title="Trending" [data]="trending" />
+  <app-people-list title="People Top" [data]="trendingPeople" />
+  <div class="bg-gray-200">
+    <app-media-list title="What's Popular" [data]="trendingTV" />
+  </div>
+  <app-media-list title="What's Popular" [data]="trendingMovie" />
+</ng-template>

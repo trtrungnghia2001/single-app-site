@@ -1,0 +1,16 @@
+<a [routerLink]="['/people', data.id]" class="w-full inline-block">
+  <div class="relative">
+    <div class="rounded-lg overflow-hidden aspect-thumbnail">
+      <img [src]="data.profile_path" alt="thumbanil" />
+    </div>
+  </div>
+  <div class="mt-4 p-2">
+    <h6>{{ data.name }}</h6>
+    <p *ngIf="data.character" class="text-text-secondaryColor text-size-xxs">
+      {{ data.character }}
+    </p>
+    <p class="text-text-secondaryColor text-size-xxs">
+      {{ data.known_for_department }}
+    </p>
+  </div>
+</a>

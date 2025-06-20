@@ -1,0 +1,15 @@
+<ng-container *ngIf="isLoading; else elseTemplate"> Loading... </ng-container>
+<ng-template #elseTemplate>
+  <section class="max-w-7xl w-full mx-auto px-4 py-10">
+    <h5 class="mb-5">Bookmark</h5>
+    <p *ngIf="data.length === 0">No result</p>
+    <ul
+      *ngIf="data.length > 0"
+      class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7"
+    >
+      <li *ngFor="let item of data">
+        <app-media-card [data]="item.media" [media_type]="item.media_type" />
+      </li>
+    </ul>
+  </section>
+</ng-template>

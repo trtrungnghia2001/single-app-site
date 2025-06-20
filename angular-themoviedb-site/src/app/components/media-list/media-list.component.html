@@ -1,0 +1,12 @@
+<section class="max-w-7xl w-full mx-auto px-4 pt-8">
+  <h5 class="mb-4">{{ title }}</h5>
+  <div class="custom-scrollbar pb-8">
+    <ul class="flex items-stretch gap-5">
+      <li *ngFor="let item of data">
+        <div class="w-36">
+          <app-media-card [data]="item" />
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

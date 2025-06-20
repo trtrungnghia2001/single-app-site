@@ -1,0 +1,154 @@
+<ng-container *ngIf="isLoading; else elseTemplate">Loading.. </ng-container>
+<ng-template #elseTemplate>
+  <section
+    [style.backgroundImage]="data?.backdrop_path"
+    class="bg-no-repeat bg-center bg-cover"
+  >
+    <div class="max-w-7xl w-full mx-auto px-4 py-10">
+      <div class="flex flex-col sm:flex-row sm:items-start gap-10">
+        <!-- left -->
+        <div class="sm:w-[300px] aspect-thumbnail rounded-lg overflow-hidden">
+          <img [src]="data?.poster_path" alt="thumbnail" />
+        </div>
+        <!-- right -->
+        <div class="space-y-6 w-full">
+          <!--  -->
+          <div class="space-y-2">
+            <h3>
+              {{ data?.title || data?.original_title || data?.original_name }}
+            </h3>
+            <p class="flex items-center gap-3">
+              <span>{{ data?.release_date }}</span>
+              <span *ngFor="let item of data?.genres">{{ item.name }}</span>
+              <span>{{ data?.runtime }}</span>
+            </p>
+          </div>
+          <!--  -->
+          <div class="space-y-3">
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-2">
+                <div
+                  class="text-2xl font-bold outline- outline-[3px] outline-green-500 bg-[#081C22] text-white rounded-full overflow-hidden w-14 aspect-square flex items-center justify-center hover:scale-110 transition-all cursor-pointer"
+                >
+                  {{ data?.vote_average }}
+                  <sup class="text-xs">%</sup>
+                </div>
+                <span class="w-min font-bold">User Score</span>
+              </div>
+              <button
+                class="bg-bg-button text-white py-2 px-4 rounded-full hover:scale-110 transition-all cursor-pointer"
+              >
+                What is your Vibe?
+              </button>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <button
+                class="cursor-pointer rounded-full bg-bg-button text-white p-2 aspect-square w-10"
+              >
+                <i class="fa-solid fa-list"></i>
+              </button>
+              <button
+                (click)="handleFavorite()"
+                class="cursor-pointer rounded-full bg-bg-button text-white p-2 aspect-square w-10"
+              >
+                <i
+                  class="fa-solid fa-heart"
+                  [ngClass]="{ 'text-red-500': isFavorite }"
+                ></i>
+              </button>
+              <button
+                (click)="handleBookmark()"
+                class="cursor-pointer rounded-full bg-bg-button text-white p-2 aspect-square w-10"
+              >
+                <i
+                  class="fa-solid fa-bookmark"
+                  [ngClass]="{ 'text-blue-500': isBookmark }"
+                ></i>
+              </button>
+              <button
+                class="cursor-pointer hover:opacity-50 transition-all"
+                (click)="setIsPlayMedia(true)"
+              >
+                <i class="fa-solid fa-play"></i>
+                Play Trailer
+              </button>
+            </div>
+          </div>
+          <!--  -->
+          <div class="space-y-2">
+            <p class="italic text-text-secondaryColor">
+              {{ data?.tagline }}
+            </p>
+            <h4>Overview</h4>
+            <p>{{ data?.overview }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="max-w-7xl w-full mx-auto">
+    <div class="flex flex-col md:flex-row items-start w-full overflow-hidden">
+      <!-- left -->
+      <div class="flex-1 w-max overflow-hidden">
+        <app-people-list
+          *ngIf="credits?.cast?.length"
+          title="Full Cast"
+          [data]="credits?.cast || []"
+        />
+        <app-people-list
+          *ngIf="credits?.crew?.length"
+          title="Full Crew"
+          [data]="credits?.crew || []"
+        />
+        <app-media-list
+          *ngIf="recommendations?.length"
+          title="Recommendations"
+          [data]="recommendations || []"
+        />
+      </div>
+      <!-- right -->
+      <div class="w-[260px] space-y-4 py-10 px-4">
+        <div>
+          <h5 class="mb-2">Original Title</h5>
+          <p>{{ data?.original_title }}</p>
+        </div>
+        <div>
+          <h5 class="mb-2">Status</h5>
+          <p>{{ data?.status }}</p>
+        </div>
+        <div>
+          <h5 class="mb-2">Original Language</h5>
+          <p>{{ data?.original_language }}</p>
+        </div>
+        <div>
+          <h5 class="mb-2">Budget</h5>
+          <p>{{ data?.budget | currency }}</p>
+        </div>
+        <div>
+          <h5 class="mb-2">Revenue</h5>
+          <p>{{ data?.revenue }}</p>
+        </div>
+        <div>
+          <h5 class="mb-2">Keywords</h5>
+          <ul class="flex items-center flex-wrap gap-1.5">
+            <li *ngFor="let item of keywords">
+              <a
+                [routerLink]="['/keyword', item.name]"
+                class="px-3 py-1 bg-gray-100 border-gray-300 rounded"
+                >{{ item.name }}</a
+              >
+            </li>
+          </ul>
+          <!-- <p>{{ data?.k }}</p> -->
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>
+<app-media-play
+  *ngIf="isPlayMedia && data"
+  [id]="id"
+  [media_type]="media_type"
+  (onClose)="setIsPlayMedia($event)"
+/>

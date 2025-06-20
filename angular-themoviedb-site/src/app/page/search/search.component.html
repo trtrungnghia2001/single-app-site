@@ -1,0 +1,67 @@
+<div class="max-w-7xl w-full mx-auto px-4 py-10 space-y-10">
+  <!-- search -->
+  <section class="space-y-4">
+    <div>
+      <input
+        type="search"
+        placeholder="Search for a movie, tv show, person..."
+        class="w-full outline-none border border-gray-300 focus:border-sky-400 px-4 py-1.5 rounded-full transition-all"
+        [(ngModel)]="searchValue"
+        (keydown.enter)="onSearchChange()"
+      />
+    </div>
+    <ul class="flex flex-wrap items-center justify-center gap-4">
+      <li
+        *ngFor="let item of type_list"
+        [ngClass]="
+          getQueryParam('type') === item.path ? 'bg-gray-300' : 'bg-gray-100'
+        "
+        class="hover:bg-gray-300 transition-all px-4 py-1.5 rounded-full text-xs cursor-pointer"
+        (click)="setQueryParam({ type: item.path })"
+      >
+        {{ item.title }}
+      </li>
+    </ul>
+  </section>
+  <!-- list -->
+  <section>
+    <ng-container *ngIf="isLoading; else elseTemplate">
+      Loading...
+    </ng-container>
+    <ng-template #elseTemplate>
+      <ng-container *ngIf="data.results.length > 0; else elseTemplate">
+        <ul
+          class="mb-8 grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7"
+        >
+          <li
+            *ngFor="
+              let item of data?.results || []
+                | paginate
+                  : {
+                      itemsPerPage: 20,
+                      currentPage: data.page,
+                      totalItems: data.total_results
+                    }
+            "
+          >
+            <app-media-card
+              *ngIf="
+                getQueryParam('type') === 'movie' ||
+                getQueryParam('type') === 'tv'
+              "
+              [data]="item"
+              [media_type]="getQueryParam('type')"
+            />
+            <app-people-card
+              *ngIf="getQueryParam('type') === 'person'"
+              [data]="item"
+            />
+          </li>
+        </ul>
+        <pagination-controls (pageChange)="onPageChange($event)">
+        </pagination-controls>
+      </ng-container>
+      <ng-template #elseTemplate> No results </ng-template>
+    </ng-template>
+  </section>
+</div>

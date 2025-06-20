@@ -1,0 +1,32 @@
+<section class="fixed top-0 left-0 right-0 bottom-0 p-6 transition-all">
+  <div
+    (click)="handleClose()"
+    class="-z-10 absolute top-0 left-0 right-0 bottom-0 bg-black/50"
+  ></div>
+  <div
+    class="relative max-w-5xl w-full h-auto mx-auto overflow-hidden bg-black text-white"
+  >
+    <h5 class="p-4">Play Trailer</h5>
+    <button
+      (click)="handleClose()"
+      class="absolute top-4 right-4 cursor-pointer"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <p *ngIf="isLoading; else video">Loading...</p>
+    <ng-template #video>
+      <div *ngIf="!youtubeEmbedUrl" class="w-full aspect-video p-4">
+        Not Result
+      </div>
+      <iframe
+        *ngIf="youtubeEmbedUrl"
+        [src]="youtubeEmbedUrl"
+        frameborder="0"
+        allow="autoplay=1&origin=https%3A%2F%2Fwww.themoviedb.org&hl=vi&modestbranding=1&fs=1&autohide=1"
+        allowfullscreen
+        class="w-full aspect-video"
+      ></iframe
+    ></ng-template>
+  </div>
+</section>

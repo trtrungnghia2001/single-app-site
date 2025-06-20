@@ -1,0 +1,80 @@
+<ng-container *ngIf="isLoading; else elseTemplate">Loading...</ng-container>
+<ng-template #elseTemplate>
+  <!-- Personal Info -->
+  <div
+    [style.backgroundImage]="backgroundImage"
+    class=""
+    class="bg-no-repeat bg-center bg-cover py-10 px-4"
+  >
+    <div
+      class="max-w-7xl w-full mx-auto flex flex-col sm:flex-row items-start gap-8"
+    >
+      <!-- left -->
+      <section class="sm:max-w-[300px] w-full">
+        <div class="rounded-lg overflow-hidden">
+          <img [src]="data?.profile_path" alt="avatar" loading="lazy" />
+        </div>
+      </section>
+      <!-- right -->
+      <section class="space-y-8 w-full overflow-hidden">
+        <h3>{{ data?.name }}</h3>
+        <div>
+          <h5 class="mb-2">Biography</h5>
+          <p>{{ data?.biography }}</p>
+        </div>
+        <div>
+          <h5 class="mb-2">Personal Info</h5>
+          <ul>
+            <li>
+              <span class="font-semibold">Known For: </span>
+              {{ data?.known_for_department }}
+            </li>
+            <li>
+              <span class="font-semibold">Known Credits: </span>
+              {{ movies?.length }} movies, {{ tv?.length }} tv,
+            </li>
+            <li>
+              <span class="font-semibold">Gender: </span>
+              {{ data?.gender ? "Female" : "Male" }}
+            </li>
+            <li>
+              <span class="font-semibold">Birthday: </span>
+              {{ data?.birthday }}
+            </li>
+            <li>
+              <span class="font-semibold">Place of Birth: </span>
+              {{ data?.place_of_birth }}
+            </li>
+            <li>
+              <span class="font-semibold">Also Known As: </span>
+              {{ data?.also_known_as }}
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+  <!-- media -->
+  <div class="px-4 py-8 space-y-8 max-w-7xl w-full mx-auto">
+    <div *ngIf="movies?.length">
+      <h5 class="mb-4">Movie</h5>
+      <ul
+        class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7"
+      >
+        <li *ngFor="let item of movies">
+          <app-media-card [data]="item" [media_type]="'movie'" />
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="tv?.length">
+      <h5 class="mb-4">Tv</h5>
+      <ul
+        class="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7"
+      >
+        <li *ngFor="let item of tv">
+          <app-media-card [data]="item" [media_type]="'tv'" />
+        </li>
+      </ul>
+    </div>
+  </div>
+</ng-template>
