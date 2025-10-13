@@ -10,7 +10,9 @@ const HomePage = () => {
   const getCountriesResult = useQuery({
     queryKey: ["countries"],
     queryFn: async () => {
-      const response = await axios.get(`https://restcountries.com/v3.1/all`);
+      const response = await axios.get(
+        `https://restcountries.com/v3.1/all?fields=cca2,flags,name,population,region,capital`
+      );
       return response.data;
     },
   });
