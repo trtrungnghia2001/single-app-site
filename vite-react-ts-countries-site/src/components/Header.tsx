@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const { theme, toggleTheme } = useThemeContext();
-  console.log({ theme });
 
   return (
     <div className="shadow sticky top-0 left-0 right-0 z-10 bg-[--element-color]">
