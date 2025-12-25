@@ -10,6 +10,7 @@
 
 ## Images
 
-![screencapture-localhost-4200-home-2025-06-20-08_26_17](https://github.com/user-attachments/assets/d58ef4eb-9247-4da9-b4be-ce3b93686b2e)
+<img width="1920" height="2836" alt="screencapture-angular-themoviedb-site-onrender-home-2025-11-29-14_44_21" src="https://github.com/user-attachments/assets/324fcaf3-3140-4a04-af4f-1a9d8c9210ae" />
+
 
 
