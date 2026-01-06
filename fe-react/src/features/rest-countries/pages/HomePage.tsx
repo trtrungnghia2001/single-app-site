@@ -46,8 +46,8 @@ const HomePage = () => {
   return (
     <div className="space-y-6 p-4">
       {/* filters */}
-      <div className="flex flex-wrap gap-4 items-center justify-between">
-        <div className="flex items-center gap-2 rounded px-4 py-2 shadow bg-input">
+      <div className="flex flex-wrap gap-4 md:items-center justify-between flex-col md:flex-row">
+        <div className="flex-1 md:max-w-max flex items-center gap-2 rounded px-4 py-2 shadow bg-input">
           <Search size={16} />
           <input
             type="text"
@@ -62,7 +62,7 @@ const HomePage = () => {
           id="region"
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="outline-none border-none rounded px-4 py-2 shadow bg-input"
+          className="flex-1 md:max-w-max outline-none border-none rounded px-4 py-2 shadow bg-input"
         >
           {getRegionData.map(([key, value]) => (
             <option key={key} value={value}>

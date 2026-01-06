@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import CategoryPage from "./CategoryPage";
 import DetailPage from "./DetailPage";
 import AreaPage from "./AreaPage";
+import IngredientPage from "./IngredientPage";
 
 const ThemealdbRoute = () => {
   const routes = useRoutes([
@@ -22,6 +23,10 @@ const ThemealdbRoute = () => {
     {
       path: "area/:name",
       element: <AreaPage />,
+    },
+    {
+      path: "ingredient",
+      element: <IngredientPage />,
     },
   ]);
 

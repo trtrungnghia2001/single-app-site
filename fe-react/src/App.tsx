@@ -23,7 +23,7 @@ const App = () => {
 
   return (
     <div>
-      <SidebarLeft />
+      <SidebarLeft className="hidden lg:block" />
       <div className="lg:ml-64">
         <Header />
         <div>{routers}</div>

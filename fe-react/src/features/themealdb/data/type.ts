@@ -60,3 +60,11 @@ export type MealType = {
   strCreativeCommonsConfirmed: string;
   dateModified: string;
 };
+
+export type IngredientType = {
+  idIngredient: string;
+  strIngredient: string;
+  strDescription: string;
+  strThumb: string;
+  strType: null;
+};

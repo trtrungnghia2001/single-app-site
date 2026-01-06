@@ -89,7 +89,7 @@ const DetailPage = () => {
       {/* main */}
       <div className="space-y-4">
         <div>
-          <h3>1. Ingredients and measure</h3>
+          <h3 className="mb-2">1. Ingredients and measure</h3>
           <ul className="grid gap-x-4 gap-y-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
             {ingredientMeasureData.map((item) => (
               <li key={item.text} className="flex items-center gap-2">
@@ -97,7 +97,7 @@ const DetailPage = () => {
                   src={item.image}
                   alt="img"
                   loading="lazy"
-                  className="w-10"
+                  className="w-10 img object-contain"
                 />
                 <span>{item.text}</span>
               </li>
@@ -105,14 +105,14 @@ const DetailPage = () => {
           </ul>
         </div>
         <div>
-          <h3>2. Instructions</h3>
+          <h3 className="mb-2">2. Instructions</h3>
           <div
             className="whitespace-break-spaces"
             dangerouslySetInnerHTML={{ __html: mealData.strInstructions }}
           ></div>
         </div>
         <div>
-          <h3>3. Youtube</h3>
+          <h3 className="mb-2">3. Youtube</h3>
           <iframe
             src={mealData.strYoutube?.replace("watch?v=", "embed/")}
             frameBorder="0"

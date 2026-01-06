@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { CategoryType, MealType } from "./type";
+import type { CategoryType, IngredientType, MealType } from "./type";
 
 const url = `https://www.themealdb.com/api/json/v1/1/`;
 
@@ -25,5 +25,10 @@ export async function searchMealByNameApi(name: string) {
 
 export async function mealDetailsByIdApi(id: string) {
   return (await axios.get<{ meals: MealType[] }>(url + `lookup.php?i=${id}`))
+    .data;
+}
+
+export async function mealIngredientApi() {
+  return (await axios.get<{ meals: IngredientType[] }>(url + `list.php?i=list`))
     .data;
 }

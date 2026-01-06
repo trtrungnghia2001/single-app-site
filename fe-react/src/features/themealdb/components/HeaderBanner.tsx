@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { mealCategoriesApi } from "../data/api";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import themealdbBg from "@/assets/images/themealdbBg.png";
 import clsx from "clsx";
 
@@ -22,7 +22,10 @@ const HeaderBanner = () => {
     >
       <div className="max-w-2xl w-full mx-auto text-center text-white">
         <h2>Find Meals For Yuoe Ingredient</h2>
-        <p>Real food dosen't have ingredients, real food is ingredients</p>
+        <p>Real food dosen't have ingredients, real food is ingredients. </p>
+        <Link to={`/themealdb/ingredient`} className="underline">
+          View ingredient
+        </Link>
         <input
           type="text"
           className="outline-none border border-white rounded-full w-full px-4 py-2 my-6"
