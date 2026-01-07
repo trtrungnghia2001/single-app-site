@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { memo, type ComponentProps } from "react";
+import { FaCloudSun } from "react-icons/fa";
 import { GiEarthAsiaOceania } from "react-icons/gi";
 import { IoFastFood } from "react-icons/io5";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -17,6 +18,11 @@ const navs = [
         label: "Themealdb",
         icon: <IoFastFood />,
         path: "/themealdb",
+      },
+      {
+        label: "Open Weather Map",
+        icon: <FaCloudSun />,
+        path: "/open-weather-map",
       },
     ],
   },

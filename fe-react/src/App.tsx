@@ -4,6 +4,7 @@ import Header from "./components/layout/Header";
 import CountryRouter from "./features/rest-countries/pages";
 import ThemealdbRoute from "./features/themealdb/pages";
 import HomePage from "./pages/HomePage";
+import OpenWeatherMapRoute from "./features/open-weather-map/pages";
 
 const App = () => {
   const routers = useRoutes([
@@ -18,6 +19,10 @@ const App = () => {
     {
       path: "/themealdb/*",
       element: <ThemealdbRoute />,
+    },
+    {
+      path: "/open-weather-map/*",
+      element: <OpenWeatherMapRoute />,
     },
   ]);
 
