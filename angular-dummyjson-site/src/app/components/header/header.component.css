@@ -1,5 +1,0 @@
-@layer utilities {
-  .routerLinkActive {
-    @apply text-blue-500;
-  }
-}
