@@ -20,7 +20,7 @@ Demo: [https://vite-react-ts-weather-site-k5gb.onrender.com](https://vite-react-
 
 Tech: React, Tailwind CSS, localStorage
 
-Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-todo-list-site)(https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-todo-list-site)
+Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-todo-list-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-todo-list-site)
 
 Demo: [https://angular-todolist-site.onrender.com](https://angular-todolist-site.onrender.com)
 
@@ -33,3 +33,11 @@ Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-
 
 Demo: [https://vite-react-ts-portfolio-site.onrender.com](https://vite-react-ts-portfolio-site.onrender.com)
 
+## vite-react-ts-kanban-site
+<img width="1543" height="868" alt="vite-react-ts-kanban-site" src="https://github.com/user-attachments/assets/f03fbc34-52f1-4c85-b089-0a3979571066" />
+
+Tech: React, Tailwind CSS, Dnd Kit, localStorage
+
+Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-kanban-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-kanban-site)
+
+Demo: [https://vite-react-ts-kanban-site.onrender.com](https://vite-react-ts-kanban-site.onrender.com)
