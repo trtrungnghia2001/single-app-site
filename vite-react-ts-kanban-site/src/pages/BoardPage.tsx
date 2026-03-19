@@ -17,9 +17,9 @@ import {
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 import { Button } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { DatabaseOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   useColumnStore,
   useModelKanbanForm,
@@ -29,25 +29,13 @@ import { SortableItem } from "@/components/SortableItem";
 import ColumnCard from "@/components/ColumnCard";
 import type { ColumnType, TaskType } from "@/types/kanban.type";
 import TaskCard from "@/components/TaskCard";
+import { MOCK_COLUMNS, MOCK_TASKS } from "@/constants";
 
 type ActiveItem = { type: string; id: string; data: unknown };
 
 const BoardIdPage = () => {
-  const {
-    datas: columns,
-    setDatas: setColumns,
-    getAll: getAllColumn,
-  } = useColumnStore();
-  const {
-    datas: tasks,
-    setDatas: setTasks,
-    getAll: getAllTask,
-  } = useTaskStore();
-
-  useEffect(() => {
-    getAllColumn();
-    getAllTask();
-  }, []);
+  const { datas: columns, setDatas: setColumns } = useColumnStore();
+  const { datas: tasks, setDatas: setTasks } = useTaskStore();
 
   // from
   const { onOpen } = useModelKanbanForm();
@@ -68,7 +56,7 @@ const BoardIdPage = () => {
     }),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
-    })
+    }),
   );
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -102,7 +90,7 @@ const BoardIdPage = () => {
         const activeIndex = columns.findIndex((item) => item._id === active.id);
 
         const overIndex = columns.findIndex(
-          (item) => item._id === taskOver?.column
+          (item) => item._id === taskOver?.column,
         );
 
         const newColumns = arrayMove(columns, activeIndex, overIndex);
@@ -136,7 +124,7 @@ const BoardIdPage = () => {
             column: over.id,
           } as TaskType;
           const newTasks = tasks.map((item) =>
-            item._id === newTask._id ? newTask : item
+            item._id === newTask._id ? newTask : item,
           );
           setTasks(newTasks);
         }
@@ -152,12 +140,12 @@ const BoardIdPage = () => {
           column: over.id,
         } as TaskType;
         const newTasks = tasks.map((item) =>
-          item._id === newTask._id ? newTask : item
+          item._id === newTask._id ? newTask : item,
         );
         setTasks(newTasks);
       }
     },
-    [tasks, columns]
+    [tasks, columns],
   );
 
   const handleDragEnd = useCallback(
@@ -166,11 +154,8 @@ const BoardIdPage = () => {
       const { active, over } = event;
 
       if (!active || !over) return;
-
-      localStorage.setItem("kanban-column", JSON.stringify(columns));
-      localStorage.setItem("kanban-task", JSON.stringify(tasks));
     },
-    [columns, tasks]
+    [columns, tasks],
   );
 
   return (
@@ -212,7 +197,7 @@ const BoardIdPage = () => {
                   tasks={
                     tasks.filter(
                       (task) =>
-                        task.column === (activeItem.data as ColumnType)._id
+                        task.column === (activeItem.data as ColumnType)._id,
                     ) as TaskType[]
                   }
                 />
@@ -223,14 +208,23 @@ const BoardIdPage = () => {
             </DragOverlay>
           )}
         </DndContext>
-        <Button
-          className="min-w-64 max-w-64"
-          block
-          onClick={() => onOpen("column")}
-        >
-          <PlusOutlined />
-          Add Column
-        </Button>
+        <div className="max-w-64 w-full space-y-2">
+          <Button className="w-full" block onClick={() => onOpen("column")}>
+            <PlusOutlined />
+            Add Column
+          </Button>
+          <Button
+            className="w-full"
+            block
+            onClick={() => {
+              setColumns(MOCK_COLUMNS);
+              setTasks(MOCK_TASKS);
+            }}
+          >
+            <DatabaseOutlined />
+            Reset Data
+          </Button>
+        </div>
       </div>
     </div>
   );

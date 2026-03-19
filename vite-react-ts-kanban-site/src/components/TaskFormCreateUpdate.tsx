@@ -3,7 +3,6 @@ import type { FormProps } from "antd";
 import { Button, Form, Input, Select, Space } from "antd";
 import toast from "react-hot-toast";
 import TextArea from "antd/es/input/TextArea";
-import { useParams } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
 import type { TaskType } from "@/types/kanban.type";
 import { priority_options, status_options } from "@/constants/options";
@@ -18,9 +17,6 @@ const initialValues: Partial<TaskType> = {
   tags: "",
 };
 const TaskFormCreateUpdate = () => {
-  // path
-  const { id } = useParams();
-
   // form
   const [form] = useForm<TaskType>();
   const onFinish: FormProps<TaskType>["onFinish"] = (values) => {
@@ -29,6 +25,7 @@ const TaskFormCreateUpdate = () => {
 
   const onFinishFailed: FormProps<TaskType>["onFinishFailed"] = (errorInfo) => {
     console.log("Failed:", errorInfo);
+    toast.error(`ERROR :))`);
   };
 
   // store
@@ -36,8 +33,10 @@ const TaskFormCreateUpdate = () => {
   const { create, updateById, deleteById, datas } = useTaskStore();
 
   const handleDelete = () => {
+    if (!data) return;
+
     try {
-      deleteById(id as string);
+      deleteById(data._id);
       toast.success(`Delete successfully`);
     } catch (error) {
       toast.error(`Delete failed`);
@@ -97,6 +96,9 @@ const TaskFormCreateUpdate = () => {
           label="Due Date"
           name="dueDate"
           rules={[{ required: true, message: "Please input your due date!" }]}
+          getValueProps={(value) => ({
+            value: value ? value.slice(0, 10) : "",
+          })}
         >
           <Input type="date" className="w-full" />
         </Form.Item>
@@ -136,7 +138,10 @@ const TaskFormCreateUpdate = () => {
             </Button>
             {isUpdate && (
               <Button
-                onClick={handleDelete}
+                onClick={() => {
+                  handleDelete();
+                  onClose();
+                }}
                 type="primary"
                 htmlType="button"
                 danger

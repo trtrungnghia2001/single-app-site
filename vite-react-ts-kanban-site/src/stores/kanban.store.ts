@@ -1,9 +1,11 @@
+import { MOCK_COLUMNS, MOCK_TASKS } from "@/constants";
 import type {
   ColumnType,
   ModelKanbanFormType,
   TaskType,
 } from "@/types/kanban.type";
 import { create } from "zustand";
+import { devtools, persist } from "zustand/middleware";
 
 interface IKanbanStore<T = unknown> {
   datas: T[];
@@ -11,89 +13,89 @@ interface IKanbanStore<T = unknown> {
   updateById: (id: string, data: Partial<T>) => void;
   deleteById: (id: string) => void;
   getById: (id: string) => T | undefined;
-  getAll: () => void;
+  // getAll: () => void;
   setDatas: (datas: T[]) => void;
 }
 
 export const useColumnStore = create<IKanbanStore<ColumnType>>()(
-  (set, get) => ({
-    datas: [],
-    create: (data) => {
-      const newData: ColumnType = {
-        ...data,
-        _id: Date.now().toString(),
-        createdAt: new Date().toString(),
-        updatedAt: new Date().toString(),
-      };
-      set({ datas: [...get().datas, newData] });
-    },
-    updateById: (id, data) => {
-      set({
-        datas: get().datas.map((item) =>
-          item._id === id ? { ...item, ...data } : item
-        ),
-      });
-    },
-    deleteById: (id) => {
-      set({
-        datas: get().datas.filter((item) => item._id !== id),
-      });
-    },
-    getById: (id) => {
-      return get().datas.find((item) => item._id === id);
-    },
-    getAll: async () => {
-      const getDataLocal = localStorage.getItem("kanban-column");
-      if (getDataLocal) {
-        set({
-          datas: JSON.parse(getDataLocal) as ColumnType[],
-        });
-      }
-    },
-    setDatas: (datas) => {
-      set({ datas: datas });
-    },
-  })
+  devtools(
+    persist(
+      (set, get) => ({
+        datas: MOCK_COLUMNS,
+        create: (data) => {
+          const newData: ColumnType = {
+            ...data,
+            _id: Date.now().toString(),
+            createdAt: new Date().toString(),
+            updatedAt: new Date().toString(),
+          };
+          set({ datas: [...get().datas, newData] });
+        },
+        updateById: (id, data) => {
+          set({
+            datas: get().datas.map((item) =>
+              item._id === id ? { ...item, ...data } : item,
+            ),
+          });
+        },
+        deleteById: (id) => {
+          set({
+            datas: get().datas.filter((item) => item._id !== id),
+          });
+        },
+        getById: (id) => {
+          return get().datas.find((item) => item._id === id);
+        },
+
+        setDatas: (datas) => {
+          set({ datas: datas });
+        },
+      }),
+      { name: "kanban-column" },
+    ),
+  ),
 );
 
-export const useTaskStore = create<IKanbanStore<TaskType>>()((set, get) => ({
-  datas: [],
-  create: (data) => {
-    const newData: TaskType = {
-      ...data,
-      _id: Date.now().toString(),
-      createdAt: new Date().toString(),
-      updatedAt: new Date().toString(),
-    };
-    set({ datas: [...get().datas, newData] });
-  },
-  updateById: (id, data) => {
-    set({
-      datas: get().datas.map((item) =>
-        item._id === id ? { ...item, ...data } : item
-      ),
-    });
-  },
-  deleteById: (id) => {
-    set({
-      datas: get().datas.filter((item) => item._id !== id),
-    });
-  },
-  getById: (id) => {
-    return get().datas.find((item) => item._id === id);
-  },
-  getAll: async () => {
-    const getDataLocal = localStorage.getItem("kanban-task");
-    if (getDataLocal) {
-      set({
-        datas: JSON.parse(getDataLocal) as TaskType[],
-      });
-    }
-  },
-  setDatas: (datas) => {
-    set({ datas: datas });
-  },
-}));
+export const useTaskStore = create<IKanbanStore<TaskType>>()(
+  devtools(
+    persist(
+      (set, get) => ({
+        datas: MOCK_TASKS,
+        create: (data) => {
+          const newData: TaskType = {
+            ...data,
+            _id: Date.now().toString(),
+            createdAt: new Date().toString(),
+            updatedAt: new Date().toString(),
+          };
+          set({ datas: [...get().datas, newData] });
+        },
+        updateById: (id, data) => {
+          set({
+            datas: get().datas.map((item) =>
+              item._id === id ? { ...item, ...data } : item,
+            ),
+          });
+        },
+        deleteById: (id) => {
+          set({
+            datas: get().datas.filter((item) => item._id !== id),
+          });
+        },
+        getById: (id) => {
+          return get().datas.find((item) => item._id === id);
+        },
+
+        setDatas: (datas) => {
+          set({ datas: datas });
+        },
+      }),
+      {
+        name: "kanban-task",
+      },
+    ),
+  ),
+);
 
 // form
 export const useModelKanbanForm = create<ModelKanbanFormType>()((set) => ({

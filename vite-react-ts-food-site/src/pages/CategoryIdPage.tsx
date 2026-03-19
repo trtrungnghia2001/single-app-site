@@ -1,3 +1,4 @@
+import ButtonBack from "@/components/ButtonBack";
 import Loader from "@/components/Loader";
 import MealItem from "@/components/MealItem";
 import Wrapper from "@/components/Wrapper";
@@ -5,8 +6,6 @@ import { mealByCategoryApi, mealCategoriesApi } from "@/services/themealdb.api";
 import { CategoryType } from "@/types/themealdb.type";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { useParams } from "react-router-dom";
 
 const CategoryIdPage = () => {
@@ -34,10 +33,7 @@ const CategoryIdPage = () => {
     <Wrapper className="space-y-8">
       {mealByCategoryResult.isLoading && <Loader />}
       <div>
-        <button onClick={() => window.history.back()} className="btn">
-          <IoMdArrowRoundBack />
-          Back
-        </button>
+        <ButtonBack />
       </div>
       <div className="flex flex-col sm:flex-row items-start gap-10">
         <div className="aspect-video w-full sm:max-w-[350px] overflow-hidden rounded-md">

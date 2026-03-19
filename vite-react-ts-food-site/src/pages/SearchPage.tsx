@@ -1,3 +1,4 @@
+import ButtonBack from "@/components/ButtonBack";
 import MealItem from "@/components/MealItem";
 import Wrapper from "@/components/Wrapper";
 import { searchMealByNameApi } from "@/services/themealdb.api";
@@ -17,6 +18,9 @@ const SearchPage = () => {
   });
   return (
     <Wrapper className="space-y-4">
+      <div>
+        <ButtonBack />
+      </div>
       <h3 className="text-base">
         Search Results for <span className="font-semibold">{id}</span>
       </h3>

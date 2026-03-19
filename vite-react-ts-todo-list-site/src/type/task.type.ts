@@ -17,6 +17,7 @@ export type TodoContextType = {
   handleAdd: (task: TaskType) => void;
   handleEdit: (task: TaskType) => void;
   handleRemove: (task: TaskType) => void;
+  handleAddMockData: () => void;
 };
 
 export type TodoFormType = {

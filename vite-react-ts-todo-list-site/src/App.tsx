@@ -29,7 +29,7 @@ import { exportToExcel, importFormExcel } from "./lib/excel";
 import { TaskType } from "./type/task.type";
 
 function App() {
-  const { todos, handleAdd } = useTodoContext();
+  const { todos, handleAdd, handleAddMockData } = useTodoContext();
   const { open, handleOpenForm, handleCloseForm, setTask, task } =
     useTodoFormContext();
   const [search, setSearch] = useState("");
@@ -48,10 +48,10 @@ function App() {
         return (
           item.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) &&
           item.status.includes(
-            filter.status.includes("all") ? "" : filter.status
+            filter.status.includes("all") ? "" : filter.status,
           ) &&
           item.priority.includes(
-            filter.priority.includes("all") ? "" : filter.priority
+            filter.priority.includes("all") ? "" : filter.priority,
           )
         );
       })
@@ -103,6 +103,9 @@ function App() {
             }}
           >
             Import
+          </Button>
+          <Button size={"sm"} onClick={() => handleAddMockData()}>
+            Add data
           </Button>
         </div>
         <div>

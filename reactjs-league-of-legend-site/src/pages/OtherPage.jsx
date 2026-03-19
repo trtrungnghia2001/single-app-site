@@ -1,6 +1,6 @@
 import { getProfileIcons, getSummonerSpells } from "app/apis";
 import { useAppContext } from "app/context";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
@@ -8,6 +8,7 @@ const OtherPage = () => {
   const { setIsLoading } = useAppContext();
   const [summonerSpells, setSummonerSpells] = useState([]);
   const [profileIcons, setProfileIcons] = useState([]);
+  const [pageProfileIcons, setPageProfileIcons] = useState(1);
   useEffect(() => {
     (async function () {
       try {
@@ -32,7 +33,13 @@ const OtherPage = () => {
       }
     })();
   }, []);
-  
+
+  const profileIconsData = useMemo(() => {
+    const limit = 100;
+
+    return profileIcons.slice(0, limit * pageProfileIcons);
+  }, [profileIcons, pageProfileIcons]);
+
   return (
     <section className="container">
       <div className="max-w-[600px] w-full text-center m-auto mb-16">
@@ -103,9 +110,9 @@ const OtherPage = () => {
         </ul>
       </div>
       <div className="mt-8">
-        <h4 className="mb-6">Profile Icons</h4>
+        <h4 className="mb-6">Profile Icons ({profileIcons.length})</h4>
         <ul className="flex flex-wrap gap-x-2 gap-y-1 ">
-          {profileIcons?.map((item, index) => {
+          {profileIconsData?.map((item, index) => {
             return (
               <li key={index}>
                 <div className="w-[40px] h-[40px] cursor-pointer">
@@ -119,6 +126,15 @@ const OtherPage = () => {
             );
           })}
         </ul>
+        <div className="text-center mt-4">
+          <button
+            className="px-4 py-1 rounded border disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled={profileIcons.length <= profileIconsData.length}
+            onClick={() => setPageProfileIcons((prev) => prev + 1)}
+          >
+            View more
+          </button>
+        </div>
       </div>
     </section>
   );

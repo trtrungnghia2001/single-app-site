@@ -1,109 +1,130 @@
+import ButtonBack from "@/components/ButtonBack";
 import Loader from "@/components/Loader";
-import Wrapper from "@/components/Wrapper";
 import { mealDetailsByIdApi } from "@/services/themealdb.api";
 import { useQuery } from "@tanstack/react-query";
 import { useMemo } from "react";
-import { IoMdArrowRoundBack } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 
 const MealIdPage = () => {
   const { id } = useParams();
-  const mealDetailsByIdResult = useQuery({
-    queryKey: ["mealDetailsById", id],
-    queryFn: async () => (await mealDetailsByIdApi(id as string)).meals?.[0],
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["themealdb", id],
+    queryFn: async () => await mealDetailsByIdApi(id as string),
     enabled: !!id,
   });
-  const mealDetailData = useMemo(() => {
-    return mealDetailsByIdResult.data;
-  }, [mealDetailsByIdResult.data]);
 
-  const ingredientMeasureData: string[] = useMemo(() => {
-    if (mealDetailData) {
-      const ingredients = Object.entries(mealDetailData)
-        .filter(([key, value]) => key.includes("strIngredient") && value)
-        ?.map(([key, value]) => value);
+  const mealData = useMemo(() => {
+    return data?.meals?.[0];
+  }, [data]);
 
-      const measures = Object.entries(mealDetailData)
-        .filter(([key, value]) => key.includes("strMeasure") && value)
-        ?.map(([key, value]) => value);
+  const ingredientMeasureData = useMemo(() => {
+    if (!mealData) return [];
 
-      return ingredients.map((item, index) => measures[index] + " " + item);
-    }
+    const ingredients = Object.entries(mealData)
+      .filter(([key, value]) => key.includes("strIngredient") && value)
+      ?.map(([_, value]) => value);
 
-    return [];
-  }, [mealDetailData]);
+    const measures = Object.entries(mealData)
+      .filter(([key, value]) => key.includes("strMeasure") && value)
+      ?.map(([_, value]) => value);
 
-  const instructionData: string[] = useMemo(() => {
-    return mealDetailData
-      ? mealDetailData.strInstructions?.split("\r\n")?.filter((item) => item)
-      : [];
-  }, [mealDetailData]);
+    return ingredients.map((item, index) => ({
+      image: `http://themealdb.com/images/ingredients/${item}.png`,
+      text: measures[index] + " " + item,
+    }));
+  }, [mealData]);
+
+  if (isLoading) return <Loader />;
+  if (error) return error.message;
+  if (!mealData) return <div>Not found</div>;
 
   return (
-    <Wrapper className="space-y-8">
-      {mealDetailsByIdResult.isLoading && <Loader />}
+    <div className="p-4 space-y-8">
+      {/* top */}
       <div>
-        <button onClick={() => window.history.back()} className="btn">
-          <IoMdArrowRoundBack />
-          Back
-        </button>
+        <ButtonBack />
       </div>
-      <div className="flex flex-col sm:flex-row items-start gap-10">
-        <div className="aspect-video w-full sm:max-w-[350px] overflow-hidden rounded-md">
+      <div className="flex md:items-start gap-8 flex-col md:flex-row">
+        <div className="md:w-xs rounded overflow-hidden aspect-video">
           <img
-            src={mealDetailData?.strMealThumb}
-            alt={mealDetailData?.strMeal}
+            src={mealData.strMealThumb}
+            alt="thumb"
             loading="lazy"
+            className="img"
           />
         </div>
-        <div className="space-y-2">
-          <h3 className="text-xl font-semibold">{mealDetailData?.strMeal}</h3>
+        <div className="flex-1 space-y-2">
+          <h2>{mealData.strMeal}</h2>
           <p>
-            <span className="font-semibold text-base">Category: </span>
-            <Link to={`/category/` + mealDetailData?.strCategory}>
-              {mealDetailData?.strCategory}
+            <span className="font-semibold">Category: </span>
+            <Link
+              to={`/themealdb/category/` + mealData.strCategory}
+              className="underline text-blue-500"
+            >
+              {mealData.strCategory}
             </Link>
           </p>
           <p>
-            <span className="font-semibold text-base">Area: </span>
-            <Link to={`/area/` + mealDetailData?.strArea}>
-              {mealDetailData?.strArea}
+            <span className="font-semibold">Area: </span>
+            <Link
+              to={`/themealdb/area/` + mealData.strArea}
+              className="underline text-blue-500"
+            >
+              {mealData.strArea}
             </Link>
           </p>
           <p>
-            <span className="font-semibold text-base">Tags: </span>
-            <span>{mealDetailData?.strTags?.split(",")?.join(", ")}</span>
+            <span className="font-semibold">Tags: </span>
+            <span>{mealData.strTags}</span>
           </p>
           <p>
-            <span className="font-semibold text-base">Source: </span>
-            <Link to={mealDetailData?.strSource as string} className="link">
-              go to source
+            <span className="font-semibold">Source: </span>
+            <Link to={mealData.strSource} className="underline text-blue-500">
+              {mealData.strSource}
             </Link>
           </p>
         </div>
       </div>
-      <div className="space-y-2">
-        <h3 className="font-semibold text-base">1. Ingredients and measure</h3>
-        <p>{ingredientMeasureData?.join(", ")}</p>
-        <h3 className="font-semibold text-base">2. Instructions</h3>
-        <ul>
-          {instructionData?.map((item, index) => (
-            <li key={index} className="odd:font-semibold even:mb-4">
-              {item}
-            </li>
-          ))}
-        </ul>
-        <h3 className="font-semibold text-base">3. Youtube</h3>
-        <iframe
-          src={mealDetailData?.strYoutube?.replace("watch?v=", "embed/")}
-          frameBorder="0"
-          className="w-full max-w-[600px] aspect-video"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          title="video"
-        ></iframe>
+      {/* main */}
+      <div className="space-y-4">
+        <div>
+          <h3 className="mb-2 text-lg font-medium">
+            1. Ingredients and measure
+          </h3>
+          <ul className="grid gap-x-4 gap-y-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+            {ingredientMeasureData.map((item) => (
+              <li key={item.text} className="flex items-center gap-2">
+                <img
+                  src={item.image}
+                  alt="img"
+                  loading="lazy"
+                  className="w-10 img object-contain"
+                />
+                <span>{item.text}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h3 className="mb-2 text-lg font-medium">2. Instructions</h3>
+          <div
+            className="whitespace-break-spaces"
+            dangerouslySetInnerHTML={{ __html: mealData.strInstructions }}
+          ></div>
+        </div>
+        <div>
+          <h3 className="mb-2 text-lg font-medium">3. Youtube</h3>
+          <iframe
+            src={mealData.strYoutube?.replace("watch?v=", "embed/")}
+            frameBorder="0"
+            className="w-full aspect-video"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            title="video"
+          ></iframe>
+        </div>
       </div>
-    </Wrapper>
+    </div>
   );
 };
 

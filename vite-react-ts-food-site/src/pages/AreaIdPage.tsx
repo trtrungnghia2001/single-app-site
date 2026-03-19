@@ -1,3 +1,4 @@
+import ButtonBack from "@/components/ButtonBack";
 import Loader from "@/components/Loader";
 import MealItem from "@/components/MealItem";
 import Wrapper from "@/components/Wrapper";
@@ -18,6 +19,9 @@ const AreaIdPage = () => {
   return (
     <Wrapper className="space-y-4">
       {mealByAreaResult.isLoading && <Loader />}
+      <div>
+        <ButtonBack />
+      </div>
       <h3 className="font-semibold text-base">Result by {id}</h3>
       <ul className="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {mealByAreaResult.data?.map((item) => (

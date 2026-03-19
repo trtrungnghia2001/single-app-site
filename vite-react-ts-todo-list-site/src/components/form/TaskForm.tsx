@@ -23,6 +23,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { useTodoContext, useTodoFormContext } from "@/contexts/todo.context";
+import { formatForDateTimeLocal } from "@/lib/utils";
 
 const formSchema = z.object({
   _id: z.string(),
@@ -166,7 +167,11 @@ const TaskForm = () => {
             <FormItem>
               <FormLabel>Due Date</FormLabel>
               <FormControl>
-                <Input type="datetime-local" {...field} />
+                <Input
+                  type="datetime-local"
+                  {...field}
+                  value={formatForDateTimeLocal(field.value)}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

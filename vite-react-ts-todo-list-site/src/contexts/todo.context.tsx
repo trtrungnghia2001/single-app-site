@@ -16,6 +16,7 @@ const TodoContext = createContext<TodoContextType>({
   handleAdd: () => {},
   handleEdit: () => {},
   handleRemove: () => {},
+  handleAddMockData: () => {},
 });
 export const TodoProvider = ({ children }: { children: ReactNode }) => {
   const [todos, dispatch] = useReducer(reducer, initialState);
@@ -36,6 +37,10 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
     dispatch({ type: "REMOVE", payload: task });
   }, []);
 
+  const handleAddMockData = useCallback(() => {
+    dispatch({ type: "ADD_MOCK_DATA" });
+  }, []);
+
   return (
     <TodoContext.Provider
       value={{
@@ -43,6 +48,7 @@ export const TodoProvider = ({ children }: { children: ReactNode }) => {
         handleAdd,
         handleEdit,
         handleRemove,
+        handleAddMockData,
       }}
     >
       {children}
