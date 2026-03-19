@@ -15,6 +15,7 @@ Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-
 
 Demo: [https://vite-react-ts-weather-site-k5gb.onrender.com](https://vite-react-ts-weather-site-k5gb.onrender.com)
 
+
 ## vite-react-ts-todo-list-site
 <img width="1920" height="1080" alt="vite-react-ts-todo-list-site" src="https://github.com/user-attachments/assets/8a437061-67d5-4d3e-9897-c9f968c77e27" />
 
@@ -23,6 +24,7 @@ Tech: React, Tailwind CSS, localStorage
 Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-todo-list-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-todo-list-site)
 
 Demo: [https://angular-todolist-site.onrender.com](https://angular-todolist-site.onrender.com)
+
 
 ## vite-react-ts-portfolio-site
 <img width="1920" height="1080" alt="vite-react-ts-portfolio-site" src="https://github.com/user-attachments/assets/eb2f5f38-a20d-4d35-b28b-3f35dbdfb12a" />
@@ -33,6 +35,7 @@ Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-
 
 Demo: [https://vite-react-ts-portfolio-site.onrender.com](https://vite-react-ts-portfolio-site.onrender.com)
 
+
 ## vite-react-ts-kanban-site
 <img width="1543" height="868" alt="vite-react-ts-kanban-site" src="https://github.com/user-attachments/assets/f03fbc34-52f1-4c85-b089-0a3979571066" />
 
@@ -41,3 +44,25 @@ Tech: React, Tailwind CSS, Dnd Kit, localStorage
 Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-kanban-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-kanban-site)
 
 Demo: [https://vite-react-ts-kanban-site.onrender.com](https://vite-react-ts-kanban-site.onrender.com)
+
+
+## vite-react-ts-food-site
+<img width="1920" height="1080" alt="vite-react-ts-food-site" src="https://github.com/user-attachments/assets/4a344bbe-3787-4c50-9671-d0ff27566455" />
+
+Tech: React, Tailwind CSS, Dnd Kit, localStorage
+
+Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-food-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-food-site)
+
+Demo: [https://vite-react-ts-food-site-itld.onrender.com](https://vite-react-ts-food-site-itld.onrender.com)
+
+
+## vite-react-ts-countries-site
+<img width="1920" height="1080" alt="vite-react-ts-countries-site" src="https://github.com/user-attachments/assets/4a25e174-28bb-4674-bd21-de1573a74310" />
+
+Tech: React, Tailwind CSS
+
+Api: [https://restcountries.com](https://restcountries.com)
+
+Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-countries-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-countries-site)
+
+Demo: [https://vite-react-ts-countries-site-734u.onrender.com](https://vite-react-ts-countries-site-734u.onrender.com)
