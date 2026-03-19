@@ -5,6 +5,8 @@ Tech: React, Tailwind CSS, localStorage
 
 Api: [https://openweathermap.org](https://openweathermap.org)
 
+Tạo một file `.env` ở thư mục gốc và copy nội dung sau:
+
 ```env
 VITE_OPWM=your_key
 ```
