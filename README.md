@@ -7,6 +7,7 @@ Api: [https://openweathermap.org](https://openweathermap.org)
 
 ```env
 VITE_OPWM=your_key
+```
 
 Code: [https://vite-react-ts-weather-site-k5gb.onrender.com/](https://vite-react-ts-weather-site-k5gb.onrender.com)
 
