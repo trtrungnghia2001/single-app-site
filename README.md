@@ -66,3 +66,15 @@ Api: [https://restcountries.com](https://restcountries.com)
 Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-countries-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-countries-site)
 
 Demo: [https://vite-react-ts-countries-site-734u.onrender.com](https://vite-react-ts-countries-site-734u.onrender.com)
+
+
+## reactjs-league-of-legend-site
+<img width="1920" height="1080" alt="vite-react-ts-countries-site" src="https://github.com/user-attachments/assets/4a25e174-28bb-4674-bd21-de1573a74310" />
+
+Tech: React, Tailwind CSS
+
+Api: [https://developer.riotgames.com](https://developer.riotgames.com)
+
+Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/reactjs-league-of-legend-site](https://github.com/trtrungnghia2001/single-app-site/tree/main/reactjs-league-of-legend-site)
+
+Demo: [https://reactjs-league-of-legend-site.onrender.com](https://reactjs-league-of-legend-site.onrender.com)
