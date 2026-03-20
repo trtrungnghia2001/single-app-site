@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+/* Import Swiper styles */
+@import "swiper/css";
+@import "swiper/css/grid";
+@import "swiper/css/pagination";
+
+:root {
+  --heading-scale: 1;
+
+  /* --- LIGHT MODE --- */
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --footer-bg: #f1f5f9;
+  --header-bg: #f1f5f9;
+  --muted-foreground: #64748b;
+  --input: #0f172a0a;
+  --border: #0f172a1a;
+  --card-bg: #ffffff;
+  --vignette-to: #c4c5cc;
+}
+/* --- DARK MODE (Default) --- */
+.dark {
+  --background: #191b24;
+  --foreground: #ffffff;
+  --footer-bg: #0f111a;
+  --header-bg: #0f111a;
+  --muted-foreground: #aaaaaa;
+  --input: #ffffff14;
+  --border: #ffffff14;
+  --card-bg: #ffffff08;
+  --vignette-to: #282b3a;
+}
+
+@theme {
+  --spacing-8xl: 96rem;
+  --breakpoint-8xl: 96rem;
+
+  /* font */
+  --font-plus: "Plus Jakarta Sans", ui-sans-serif, system-ui;
+  --font-syne: "Syne", sans-serif;
+
+  /* color mapping */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-footer-bg: var(--footer-bg);
+  --color-header-bg: var(--header-bg);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-input: var(--input);
+  --color-select: var(--input);
+  --color-button: var(--input);
+  --color-border: var(--border);
+  --color-card: var(--card-bg);
+
+  /* aspect */
+  --aspect-thumbnail: 2/3;
+
+  /* size */
+  --text-13: 13px;
+  --text-10: 10px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+  body {
+    @apply bg-background text-foreground text-sm;
+  }
+
+  @media (max-width: 768px) {
+    :root {
+      --heading-scale: 0.75 !important;
+    }
+  }
+
+  /* Heading color tự động theo foreground */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-bold font-plus duration-300 tracking-tight text-foreground;
+  }
+
+  /* Giữ nguyên các font-size calc của ông */
+  h1 {
+    font-size: calc(3rem * var(--heading-scale));
+  }
+  h2 {
+    font-size: calc(1.875rem * var(--heading-scale));
+  }
+  h3 {
+    font-size: calc(1.5rem * var(--heading-scale));
+  }
+  h4 {
+    font-size: calc(1.25rem * var(--heading-scale));
+  }
+  h5 {
+    font-size: calc(1rem * var(--heading-scale));
+  }
+  h6 {
+    font-size: 0.875rem;
+  }
+
+  button {
+    @apply cursor-pointer;
+  }
+
+  /* Option trong Light mode cần text đen */
+  option {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* input-field đã được chỉnh sửa để tương thích cả 2 mode */
+  .input-field {
+    @apply w-full bg-input border border-border py-3.5 pl-12 pr-4 
+           rounded-2xl outline-none transition-all duration-200
+           text-foreground focus:border-red-600/50 focus:bg-white/[0.08] focus:ring-1 focus:ring-red-600/20
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input-label {
+    @apply text-10 tracking-[0.2em] text-muted-foreground font-black uppercase ml-1 mb-1.5 block;
+  }
+
+  .input-icon {
+    @apply absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-lg transition-colors;
+  }
+
+  /* Nó sẽ tự lấy --background của mode tương ứng */
+  .bg-vignette {
+    background: linear-gradient(
+      0deg,
+      var(--background) 0%,
+      var(--vignette-to) 100%
+    );
+  }
+
+  /* Scrollbar  */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    /* Dark mode dùng màu tối, Light mode dùng màu slate nhạt */
+    background: var(--footer-bg);
+    border-radius: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #8d8d94;
+    border-radius: 10px;
+    border: 2px solid var(--footer-bg);
+    transition: all 0.3s ease;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #dc2626;
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #373839;
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #dc2626;
+  }
+}
