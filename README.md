@@ -96,6 +96,13 @@ Tech: React 19 (Vite), TypeScript, Tailwind CSS, Zustand, Supabase
 
 Api: [https://docs.otruyenapi.com](https://docs.otruyenapi.com/), [https://ophim18.cc/api-document](https://ophim18.cc/api-document)
 
+Tạo một file `.env` ở thư mục gốc và copy nội dung sau:
+
+```env
+VITE_SUPABASE_URL = your_supabase_url
+VITE_SUPABASE_ANON_KEY = your_anon_key
+```
+
 Code: [https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-cimanga-hub](https://github.com/trtrungnghia2001/single-app-site/tree/main/vite-react-ts-cimanga-hub)
 
 Demo: [https://vite-react-ts-cimanga-hub.onrender.com](https://vite-react-ts-cimanga-hub.onrender.com)
