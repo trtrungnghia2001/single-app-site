@@ -3,8 +3,10 @@ import clsx from "clsx";
 import { memo } from "react";
 import { NavLink } from "react-router-dom";
 import Wrapper from "./Wrapper";
+import { useAuthStore } from "@/stores/authStore";
 
 const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
+  const { signOut } = useAuthStore();
   return (
     <Wrapper className="flex items-start gap-8 p-4 md:p-8">
       <aside className="w-xs bg-header-bg rounded-lg p-8 hidden lg:block">
@@ -19,9 +21,8 @@ const AuthLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
                 <button
                   onClick={async () => {
                     if (nav.type === "signout") {
-                      //   await signOut();
+                      await signOut();
                     }
-                    // onClose();
                   }}
                   className={clsx([
                     `flex items-center gap-2 py-4 w-full hover:text-yellow-500`,
