@@ -1,6 +1,6 @@
-# Full-stack Cimanga Hub
+<img width="1920" height="1080" alt="vite-react-ts-cimanga-hub" src="https://github.com/user-attachments/assets/075ed7e6-e265-4a29-b76d-74724fda0256" />
 
-A high-performance social platform for Movie and Manga enthusiasts. Built with a modern tech stack to ensure seamless real-time engagement, secure authentication, and a sleek user experience.
+Api: [https://docs.otruyenapi.com](https://docs.otruyenapi.com/), [https://ophim18.cc/api-document](https://ophim18.cc/api-document)
 
 ## Table of Contents
 
