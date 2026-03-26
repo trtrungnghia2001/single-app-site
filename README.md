@@ -1,4 +1,6 @@
-# Hello my friend
+![single-app-site](https://github.com/user-attachments/assets/5ef35abc-c08f-413d-b8d3-77a119af836e)
+
+## Hello my friend
 
 ## This project compiles the applications that I have learned about.
 
