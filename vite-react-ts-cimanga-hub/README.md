@@ -1,6 +1,8 @@
-# Full-stack Cimanga Hub
+<img width="1920" height="1080" alt="vite-react-ts-cimanga-hub" src="https://github.com/user-attachments/assets/075ed7e6-e265-4a29-b76d-74724fda0256" />
 
-A high-performance social platform for Movie and Manga enthusiasts. Built with a modern tech stack to ensure seamless real-time engagement, secure authentication, and a sleek user experience.
+Api: [https://docs.otruyenapi.com](https://docs.otruyenapi.com/), [https://ophim18.cc/api-document](https://ophim18.cc/api-document)
+
+Demo: [https://vite-react-ts-cimanga-hub.onrender.com](https://vite-react-ts-cimanga-hub.onrender.com)
 
 ## Table of Contents
 
@@ -9,8 +11,6 @@ A high-performance social platform for Movie and Manga enthusiasts. Built with a
 * [Technologies Used](#technologies-used)
 * [Database Schema](#database-schema)
 * [Getting Started](#getting-started)
-* [Demo](#demo)
-* [Images](#images)
 
 ## Overview
 
@@ -189,16 +189,3 @@ VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
 npm install
 npm run dev
 ```
-
-## Demo
-
-[https://cimanga-hub.vercel.app/](https://cimanga-hub.vercel.app/)
-
-## Images
-
-<img width="1920" height="3413" alt="1" src="https://github.com/user-attachments/assets/2c3c8490-5cd3-4ae4-b1af-b41d19178718" />
-<img width="1920" height="3031" alt="2" src="https://github.com/user-attachments/assets/401b561e-b7d9-4cca-9142-38a33f67c6b3" />
-<img width="1920" height="980" alt="3" src="https://github.com/user-attachments/assets/59356f7d-706f-44d8-be23-86238ee6ff4f" />
-<img width="1920" height="920" alt="4" src="https://github.com/user-attachments/assets/7534f260-8aa9-434b-b0b7-43551871f1bd" />
-<img width="1920" height="1043" alt="5" src="https://github.com/user-attachments/assets/6e83a595-924e-4500-b946-f02522e6f5a9" />
-
