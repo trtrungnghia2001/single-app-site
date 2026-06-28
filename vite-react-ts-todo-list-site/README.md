@@ -2,4 +2,4 @@
 
 Tech: React, Tailwind CSS, localStorage
 
-Demo: [https://angular-todolist-site.onrender.com](https://angular-todolist-site.onrender.com)
+Demo: [https://vite-react-ts-todo-list-site.onrender.com](https://vite-react-ts-todo-list-site.onrender.com)
